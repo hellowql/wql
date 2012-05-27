@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/helloWorldWeb/helloWorldAction.action" method="post">  
+	<form action="/HelloWorldWeb/helloWorldAction.action" method="post">  
     <input type="hidden" name="submitFlag" value="login"/>  
     ÕËºÅ:<input type="text" name="account"><br>  
     ÃÜÂë:<input type="password" name="password"><br>  
