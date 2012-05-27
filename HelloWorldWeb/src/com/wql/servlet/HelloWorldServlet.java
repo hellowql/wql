@@ -23,6 +23,7 @@ public class HelloWorldServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
 		HelloWorldModel hwm=(HelloWorldModel) req.getAttribute("helloModel");
 //		hwm.bussinessExecute();
+		System.out.println("this is post");
 		System.out.println("用户输入的参数为："+hwm);
 		req.setAttribute("hwm", hwm);
 		req.getRequestDispatcher("/servletimpl/welcome.jsp").forward(req, resp);
