@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:useBean id="hwm" class="com.wql.vo.HelloWorldModel" scope="request" />
-	welcome <%=request.getParameter("account") %>
-
+<%@ taglib prefix="s" uri="/struts-tags"%>  
+╩╤с╜ук╨ен╙<s:property value="account"/>╣деСсяю╢╥ц
 </body>
 </html>
