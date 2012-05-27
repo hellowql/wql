@@ -10,7 +10,8 @@
   
     <package name="helloWorldWeb"  extends="struts-default">  
         <action name="helloWorldAction" class="com.wql.action.HelloWorldAction">  
-            <result name="toWelcome">/jsp/welcome.jsp</result>  
+            <result name="toWelcome">/jsp/welcome.jsp</result>
+            <result name="input">/jsp/login.jsp</result>
         </action>  
     </package> 
 </struts>

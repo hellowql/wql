@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; gb2312"
     pageEncoding="gb2312"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,6 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<s:if test="hasFieldErrors()">  
+	    <s:iterator value="fieldErrors">  
+	        <font color=red><s:property value="value[0]"/></font><br>  
+	    </s:iterator>  
+	</s:if>
 	<form action="/HelloWorldWeb/helloWorldAction.action" method="post">  
     <input type="hidden" name="submitFlag" value="login"/>  
     ук╨е:<input type="text" name="account"><br>  

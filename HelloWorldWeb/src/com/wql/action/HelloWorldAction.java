@@ -1,29 +1,39 @@
 package com.wql.action;
 
-import com.opensymphony.xwork2.Action;
+import org.apache.commons.lang3.StringUtils;
 
-public class HelloWorldAction implements Action {
+import com.opensymphony.xwork2.ActionSupport;
+
+public class HelloWorldAction extends ActionSupport {
+
+	private static final long serialVersionUID = 1L;
 	private String account;
 	private String password;
 	private String submitFlag;
-	
 
 	@Override
 	public String execute() throws Exception {
-		System.out.println("用户输入的参数为==="+"account="+account+",password="+password+",submitFlag="+submitFlag);  
+		this.businessExecute();  
         return "toWelcome";  
+	}
+
+	private void businessExecute() {
+		System.out.println("用户输入的参数为==="+"account="+account+",password="+password+",submitFlag="+submitFlag);
+	}
+	
+	@Override
+	public void validate(){
+		if(StringUtils.isEmpty(StringUtils.trim(account))){
+			this.addFieldError("account", this.getText("accountNull"));
+		}
+		if(StringUtils.isEmpty(StringUtils.trim(password))){
+			this.addFieldError("password", this.getText("passwordNull"));
+		}else if(StringUtils.trim(password).length()<6){
+			this.addFieldError("password", this.getText("passwordLenthShort"));
+		}
 	}
 	
 	
-//	public void doPost(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
-//		HelloWorldModel hwm=(HelloWorldModel) req.getAttribute("helloModel");
-////		hwm.bussinessExecute();
-//		System.out.println("this is post");
-//		System.out.println("用户输入的参数为："+hwm);
-//		req.setAttribute("hwm", hwm);
-//		req.getRequestDispatcher("/servletimpl/welcome.jsp").forward(req, resp);
-//    }
-
 	public String getAccount() {
 		return account;
 	}
