@@ -2,7 +2,10 @@ package com.wql.action;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.interceptor.PreResultListener;
+import com.wql.listener.MyPreResult;
 
 public class HelloWorldAction extends ActionSupport {
 
@@ -13,7 +16,9 @@ public class HelloWorldAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
-		this.businessExecute();  
+		this.businessExecute(); 
+		PreResultListener pr=new MyPreResult();
+		ActionContext.getContext().getActionInvocation().addPreResultListener(pr);
         return "toWelcome";  
 	}
 

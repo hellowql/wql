@@ -8,10 +8,27 @@
     <constant name="struts.locale" value="zh_CN"/>  
     <constant name="struts.i18n.encoding" value="gb2312"/>  
   
-    <package name="helloWorldWeb"  extends="struts-default">  
-        <action name="helloWorldAction" class="com.wql.action.HelloWorldAction">  
-            <result name="toWelcome">/jsp/welcome.jsp</result>
-            <result name="input">/jsp/login.jsp</result>
+    <package name="helloWorldWeb"  extends="struts-default">
+        <interceptors>  
+            <interceptor name="myInterceptor" class="com.wql.interceptor.MyInterceptor"/>
+            <interceptor name="myLogger" class="com.wql.interceptor.LogginInterceptor"/>  
+        </interceptors> 
+    	<global-results>  
+	        <result name="404">/jsp/error.jsp</result>
+	        <result name="math-exception">/jsp/error.jsp</result>
+	    </global-results>
+	    <global-exception-mappings>  
+            <exception-mapping result="math-exception" exception="java.lang.ArithmeticException"/>  
+            <exception-mapping result="math-exception" exception="java.lang.Exception"/>  
+        </global-exception-mappings>
+        
+        <action name="helloWorldAction" class="com.wql.action.HelloWorldAction">
+            <result name="toWelcome" type="dispatcher">/jsp/welcome.jsp</result>
+            <result name="input" type="dispatcher">/jsp/login.jsp</result>
+            <interceptor-ref name="myLogger"/>
+            <interceptor-ref name="timer"/>
+            <interceptor-ref name="myInterceptor"/>
+            <interceptor-ref name="defaultStack"/>
         </action>  
     </package> 
 </struts>
